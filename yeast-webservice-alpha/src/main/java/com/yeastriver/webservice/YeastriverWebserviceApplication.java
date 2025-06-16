@@ -1,13 +1,13 @@
-package com.yeastriver.yeast_webservice_alpha;
+package com.yeastriver.webservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class YeastWebserviceAlphaApplication {
+public class YeastriverWebserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(YeastWebserviceAlphaApplication.class, args);
+		SpringApplication.run(YeastriverWebserviceApplication.class, args);
 	}
 
 }
