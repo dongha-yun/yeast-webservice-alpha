@@ -41,6 +41,9 @@ dependencies {
 
 	// Session 저장소용 DB
 	implementation 'org.springframework.session:spring-session-jdbc'
+
+	// Spring Security Test
+	testImplementation 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {
