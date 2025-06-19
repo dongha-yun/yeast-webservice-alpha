@@ -35,6 +35,9 @@ dependencies {
 
 	// mustache 의존성 등록
 	implementation 'org.springframework.boot:spring-boot-starter-mustache'
+
+	// Spring Security 설정
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 }
 
 tasks.named('test') {
