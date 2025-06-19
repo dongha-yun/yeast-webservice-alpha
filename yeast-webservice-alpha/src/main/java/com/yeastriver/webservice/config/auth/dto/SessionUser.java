@@ -6,13 +6,13 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Getter
-public class SessionUsers implements Serializable {
+public class SessionUser implements Serializable {
 
     private String name;
     private String email;
     private String picture;
 
-    public SessionUsers(Users users) {
+    public SessionUser(Users users) {
         this.name = users.getName();
         this.email = users.getEmail();
         this.picture = users.getPicture();

@@ -1,6 +1,7 @@
 package com.yeastriver.webservice.web;
 
-import com.yeastriver.webservice.config.auth.dto.SessionUsers;
+import com.yeastriver.webservice.config.auth.LoginUser;
+import com.yeastriver.webservice.config.auth.dto.SessionUser;
 import com.yeastriver.webservice.service.posts.PostsService;
 import com.yeastriver.webservice.web.dto.PostsResponseDto;
 import jakarta.servlet.http.HttpSession;
@@ -17,10 +18,19 @@ public class IndexController {
     private final PostsService postsService;
     private final HttpSession httpSession;
 
+//    @GetMapping("/")
+//    public String index(Model model) {
+//        model.addAttribute("posts", postsService.findAllDesc());
+//        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+//        if (user != null) {
+//            model.addAttribute("userName", user.getName());
+//        }
+//        return "index";
+//    }
+
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, @LoginUser SessionUser user) {
         model.addAttribute("posts", postsService.findAllDesc());
-        SessionUsers user = (SessionUsers) httpSession.getAttribute("user");
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }

@@ -1,9 +1,9 @@
 package com.yeastriver.webservice.config.auth;
 
 import com.yeastriver.webservice.config.auth.dto.OAuthAttributes;
-import com.yeastriver.webservice.config.auth.dto.SessionUsers;
+import com.yeastriver.webservice.config.auth.dto.SessionUser;
 import com.yeastriver.webservice.domain.user.Users;
-import com.yeastriver.webservice.domain.user.UsersRepository;
+import com.yeastriver.webservice.domain.user.UserRepository;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,7 +21,7 @@ import java.util.Collections;
 @Service
 public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequest, OAuth2User> {
 
-    private final UsersRepository usersRepository;
+    private final UserRepository userRepository;
     private final HttpSession httpSession;
 
     @Override
@@ -42,18 +42,18 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         Users users = saveOrUpdate(attributes);
 
-        httpSession.setAttribute("user", new SessionUsers(users));
+        httpSession.setAttribute("user", new SessionUser(users));
 
         return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(users.getRoleKey())), attributes.getAttributes(), attributes.getNameAttributeKey());
     }
 
     private Users saveOrUpdate(OAuthAttributes attributes) {
-        Users users = usersRepository
+        Users users = userRepository
                 .findByEmail(attributes.getEmail())
                 .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
 
-        return usersRepository.save(users);
+        return userRepository.save(users);
     }
 
 }

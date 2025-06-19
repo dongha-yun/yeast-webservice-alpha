@@ -38,6 +38,9 @@ dependencies {
 
 	// Spring Security 설정
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+	// Session 저장소용 DB
+	implementation 'org.springframework.session:spring-session-jdbc'
 }
 
 tasks.named('test') {
